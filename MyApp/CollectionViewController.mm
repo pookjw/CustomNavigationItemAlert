@@ -236,6 +236,12 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    id visualProvider = [navigationBar valueForKey:@"_visualProvider"];
+    ((void (*)(id, SEL))objc_msgSend)(visualProvider, sel_registerName("_beginCustomization"));
+}
+
 - (BOOL)navigationItemShouldBeginRenaming:(UINavigationItem *)navigationItem {
     return YES;
 }
